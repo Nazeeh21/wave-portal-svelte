@@ -9,7 +9,7 @@
   import WavePortal from '../artifacts/contracts/Wave-Portal.sol/WavePortal.json';
   import { onMount } from 'svelte';
 
-  const CONTRACT_ADDRESS = '0x6e376503abB82AbD1135a301BBC7D4966937EFAb';
+  const CONTRACT_ADDRESS = '0xA79784b15F463c8024Bda8e379142A70e0F13c6b';
 
   async function getAllWaves() {
     if (!window.ethereum) {

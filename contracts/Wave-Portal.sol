@@ -36,12 +36,6 @@ contract WavePortal {
 	constructor() payable {}
 
 	function wave(Reaction _reaction, string memory _message) public {
-		// anti-spam check
-		require(
-			lastWavedAt[msg.sender] + 1 minutes < block.timestamp,
-			"Wait 1 minutes to send another wave."
-		);
-		lastWavedAt[msg.sender] = block.timestamp;
 
 		// prize randomness
 		totalWaves += 1;

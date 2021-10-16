@@ -23,7 +23,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   },
   networks: {
     hardhat: {
-      // chainId: 31337
+      chainId: 1337
     },
     ropsten: {
       url: process.env.ROPSTEN_NODE_URL,

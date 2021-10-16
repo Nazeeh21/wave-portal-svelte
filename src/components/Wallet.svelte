@@ -40,7 +40,7 @@
   {/if}
 
   <div class="network">
-    After connecting MetaMask, please switch to Rinkeby TestNet.
+    After connecting MetaMask, please switch to Ropsten TestNet.
   </div>
 </div>
 
