@@ -289,7 +289,7 @@ async function getAllWaves() {
 Now, start the development server of svelte. You should see an error as shown below.
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634411696569/FNNU0XSkV.png)
-This is because we are trying to import a `json` file in our `App.svelte` and to import a `json` we need to add an extra `rollup-plugin` by running the following command.
+This is because we are trying to import a `json` file in our `App.svelte` and to import a `json` we need to add an extra plugin `rollup-plugin` by running the following command.
 
 ```shell
 yarn add @rollup/plugin-json
