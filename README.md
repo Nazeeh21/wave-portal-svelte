@@ -51,7 +51,9 @@ To compile and deploy our Smart Contract, let's initialize a new Ethereum develo
 npx hardhat
 ```
 Select the default settings when prompted as shown
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634292845974/at3uW4CHR.png)
+</p>
 
 Following that, run the following command
 ```shell
@@ -172,7 +174,9 @@ npx hardhat node
 
 Running this command will list all the accounts and their private keys in your terminal.
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634374126123/MLK6SlBIU.png)
+</p>
 
 These are the 20 test accounts created for us by hardhat that we can use to deploy and test our Smart Contract locally. Each account has a sufficient amount of test Ethers.
 
@@ -206,7 +210,9 @@ This script will deploy our Smart Contract to our local network and now we shoul
 
 On successful deployment, you should see the following output in your terminal
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634375594970/oay6gqtD6.png)
+</p>
 
 > This contract is deployed on the local node, using the first account that was created when we started the local network.
 
@@ -216,15 +222,21 @@ Now, to send a transaction to our Smart Contract deployed on the test node, we n
 
 Let's import one of these accounts into our Metamask wallet and use its test ethers. To do so, open MetaMask and update the network to be **Localhost 8545**
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634376286673/KoVETGaBw.png)
-
+</p>
+	
 On **Localhost 8545**, click on **Import Account** from the **accounts** menu on the top-right.
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634376404075/IEDb1ytMG.png)
+</p>
 
 Copy and paste any one of the **private keys** from the CLI and click on **Import**. Once the account is imported, you should see the Metamask interface like this.
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634376684523/ZmN9K5RmW.png)
+</p>
 
 As we have our Contract deployed and our MetaMask wallet configured, let's start interacting from our Svelte frontend.
 
@@ -240,7 +252,9 @@ yarn dev
 ```
 Now you should see our front end as below on the `localhost:5000`.
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634395206936/aMtLiVCU7.png)
+</p>
 
 You'll notice that, by clicking on any of the greetings, nothing is happening. Also, we are not able to see any previous greetings. So, let's add logic to send greetings to our Smart Contract and fetch all the previous greetings.
 
@@ -288,7 +302,10 @@ async function getAllWaves() {
 ```
 Now, start the development server of svelte. You should see an error as shown below.
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634411696569/FNNU0XSkV.png)
+</p>
+
 This is because we are trying to import a `json` file in our `App.svelte` and to import a `json` we need to add an extra plugin `rollup-plugin` by running the following command.
 
 ```shell
@@ -377,7 +394,9 @@ https://ropsten.infura.io/v3/your_project_id
 
 To deploy to the test network we need to update our hardhat config with a piece of additional network information. One thing is to set the private key of the wallet we'll be deploying from. You can export your private key from MetaMask by clicking menu > Account details > Export private key.
 
+<p align="center">
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1634414939857/znFCh5i1q.png)
+</p>
 
 Now add networks property in `hardhat.config.js` as shown below.
 ```shell
