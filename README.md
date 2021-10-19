@@ -1,6 +1,11 @@
+<p align="center">
+<img src="https://user-images.githubusercontent.com/56908732/137846257-f1781bce-50bd-4184-978f-4bf0f64451a9.png" alt="Svelte-ETh-Hardhat" width="600px" margin="auto" />
+</p>
+	
 # Integrate your Svelte app with Smart Contract
 
-## Building Full-stack dApps using Svelte, Ethers.js, Solidity, and Hardhat
+## Building
+Full-stack dApps using Svelte, Ethers.js, Solidity, and Hardhat
 
 I was developing a dApp using Svelte. While developing, I encountered a lot of errors and also didn't find enough resources for the same. So, I thought to write down a guide for the same so no one feels a lack of resources anymore.
 
