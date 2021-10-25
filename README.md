@@ -229,7 +229,7 @@ Let's import one of these accounts into our Metamask wallet and use its test eth
 On **Localhost 8545**, click on **Import Account** from the **accounts** menu on the top-right.
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376404075/IEDb1ytMG.png" alt="image.png />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376404075/IEDb1ytMG.png" alt="image.png" />
 </p>
 
 Copy and paste any one of the **private keys** from the CLI and click on **Import**. Once the account is imported, you should see the Metamask interface like this.
