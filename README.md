@@ -46,7 +46,7 @@ yarn add ethers hardhat @nomiclabs/hardhat-waffle ethereum-waffle chai @nomiclab
 ```
 
 ### Initializing and Configuring Ethereum development environment
-To compile and deploy our Smart Contract, let's initialize a new Ethereum development environment with **Hardhat** by running the code below.
+To compile and deploy our Smart Contract, let's initialize a new Ethereum development environment with **Hardhat** by running the code below. Before running the script, make sure we are in the `wave-portal-starter-boilerplate` folder.
 ```shell
 npx hardhat
 ```
@@ -59,9 +59,9 @@ Following that, run the following command
 ```shell
 yarn add --dev "hardhat@^2.6.6" "@nomiclabs/hardhat-waffle@^2.0.0" "ethereum-waffle@^3.0.0" "chai@^4.2.0" "@nomiclabs/hardhat-ethers@^2.0.0" "ethers@^5.0.0"
 ```
-Now you should see a `hardhat.config.js` file, `contracts` and `scripts` folder in your root directory.
+Now you should see a `hardhat.config.js` file, `contracts` and `scripts` folder in your `code/wave-portal-starter-boilerplate/` directory.
 
-Due to [Metamask configuration issue](https://hardhat.org/metamask-issue.html), we need to update the chain Id of our Hardhat Configuration to **1337**. Also, we need to update the location for the [artifacts](https://hardhat.org/guides/compile-contracts.html#artifacts) to be in the `src` directory of our app.
+Due to [Metamask configuration issue](https://hardhat.org/metamask-issue.html), we need to update the chain Id of our Hardhat Configuration to **1337**. Also, we need to update the location for the [artifacts](https://hardhat.org/guides/compile-contracts.html#artifacts) to be in the `code/wave-portal-starter-boilerplate/src` directory of our app.
 
 Make sure your `hardhat.config.js` looks like this.
 ```javascript
@@ -78,7 +78,7 @@ module.exports = {
 };
 ```
 We have our **Ethereum Environment** ready, so let's get our Smart Contract. 
-Delete `Greeter.sol` under the `contracts` folder in the root directory and create a new file namely `WavePortal.sol`. In this new file, paste the Smart contract from below.
+Delete `Greeter.sol` under the `code/wave-portal-starter-boilerplate/contracts` folder in the root directory and create a new file namely `WavePortal.sol`. In this new file, paste the Smart contract from below.
 
 Your `WavePortal.sol` file should look like this.
 ```solidity
@@ -164,7 +164,7 @@ So, let's compile our Smart Contract by running the command below.
 ```shell
 npx hardhat compile
 ```
-On successful compiling, you should see a new folder named **artifacts** under the **src** folder. You can see the ABI of our contract under *artifacts/contracts/WavePortal.json* folder. We can use this ABI by simply importing this `.json` file.
+On successful compiling, you should see a new folder named **artifacts** under the `code/wave-portal-starter-boilerplate/src` folder. You can see the ABI of our contract under *artifacts/contracts/WavePortal.json* folder. We can use this ABI by simply importing this `.json` file.
 
 ### Deploying to localhost
 For easy and fast interaction, we'll be deploying our contract to a local test node. For that, first, we need to start a local chain by running the following command
@@ -180,7 +180,7 @@ Running this command will list all the accounts and their private keys in your t
 
 These are the 20 test accounts created for us by hardhat that we can use to deploy and test our Smart Contract locally. Each account has a sufficient amount of test Ethers.
 
-Let's deploy our Smart Contract to localhost using one of these accounts. But before that, navigate to the `scripts` folder and rename `scripts/sample-script.js` to `scripts/deploy.js`. Inside this `deploy.js` file, update your `main()` function such that your `deploy.js` file looks like below.
+Let's deploy our Smart Contract to localhost using one of these accounts. But before that, navigate to the `code/wave-portal-starter-boilerplate/scripts` folder and rename `scripts/sample-script.js` to `scripts/deploy.js`. Inside this `deploy.js` file, update your `main()` function such that your `deploy.js` file looks like below.
 
 ```javascript
 // deploy.js
@@ -258,7 +258,7 @@ Now you should see our front end as below on the `localhost:5000`. If `localhost
 
 You'll notice that, by clicking on any of the greetings, nothing is happening. Also, we are not able to see any previous greetings. So, let's add logic to send greetings to our Smart Contract and fetch all the previous greetings.
 
-Navigate to the `App.svelte` file under the `src` folder, add the following `import` statements.
+Navigate to the `App.svelte` file under the `code/wave-portal-starter-boilerplate/src` folder, add the following `import` statements.
 
 ```svelte
 import { ethers } from 'ethers';
@@ -302,6 +302,8 @@ async function getAllWaves() {
 ```
 Now, start the development server of svelte. You should see an error as shown below.
 
+> Before starting the server, make sure that the current directory is `code/wave-portal-starter-boilerplate/`
+
 <p align="center">
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634411696569/FNNU0XSkV.png" alt="image" />
 </p>
@@ -311,11 +313,11 @@ This is because we are trying to import a `json` file in our `App.svelte` and to
 ```shell
 yarn add @rollup/plugin-json
 ```
-Now, in your `rollup.config.js` file, import this plugin by adding the following import statement.
+Navigate to the `rollup.config.js` file in `code/wave-portal-starter-boilerplate/` *directory*. Now, in your `rollup.config.js` file, import this plugin by adding the following import statement.
 ```javascript
 import json from "@rollup/plugin-json";
 ```
-Navigate to the `rollup.config.js` file in your *root directory* and the `plugins` array as below.
+In your `rollup.config.js` file in `code/wave-portal-starter-boilerplate/` *directory* and navigate to the `plugins` array as below.
 ```javascript
 plugins: [
      commonjs(),
@@ -323,7 +325,7 @@ plugins: [
      ...
 ]
 ```
-Now, restart the development server, you should see the frontend server started successfully. Currently, you won't see any greetings on our front end because we don't have one. So, let's add a function to send the greeting. For that, navigate to `SendWave.svelte` file and add the following imports.
+Now, restart the development server, you should see the frontend server started successfully. Currently, you won't see any greetings on our front end because we don't have one. So, let's add a function to send the greeting. For that, navigate to `code/wave-portal-starter-boilerplate/src/components/SendWave.svelte` file and add the following imports.
 
 ```javascript
   import { ethers } from 'ethers';
@@ -354,7 +356,7 @@ async function sendWaveReaction(reaction, message) {
     }
   }
 ```
-To interact with our Smart Contract from our front end, we need to connect our MetaMask wallet to our website. For that, in `Wallet.svelte` file, complete the `connectWallet()` function by pasting the below code.
+To interact with our Smart Contract from our front end, we need to connect our MetaMask wallet to our website. For that, in `code/wave-portal-starter-boilerplate/src/components/Wallet.svelte` file, complete the `connectWallet()` function by pasting the below code.
 
 ```javascript
 async function connectWallet() {
@@ -398,7 +400,7 @@ To deploy to the test network we need to update our hardhat config with a piece 
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634414939857/znFCh5i1q.png" alt="image" />
 </p>
 
-Now add networks property in `hardhat.config.js` as shown below.
+Now add networks property in `hardhat.config.js` under `code/wave-portal-starter-boilerplate/` directory as shown below.
 ```shell
 module.exports = {
   defaultNetwork: "hardhat",
@@ -416,7 +418,7 @@ module.exports = {
 };
 ```
 
-To deploy our Smart Contract to the Ropsten network, run the following command.
+To deploy our Smart Contract to the Ropsten network, run the following command in `code/wave-portal-starter-boilerplate/` directory.
 ```shell
 npx hardhat run scripts/deploy.js --network ropsten
 ```
