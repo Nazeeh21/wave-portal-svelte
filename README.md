@@ -250,7 +250,7 @@ Let's start integration with our front end. To test our frontend, start the serv
 ```shell
 yarn dev
 ```
-Now you should see our front end as below on the `localhost:5000`. If `localhost:5000` doesn't work then try `http://127.0.0.1%3A5000/`.
+Now you should see our front end as below on the `localhost:5000`. If `localhost:5000` doesn't work then try `http://127.0.0.1:5000/`.
 
 <p align="center">
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634395206936/aMtLiVCU7.png" alt="image.png" />
