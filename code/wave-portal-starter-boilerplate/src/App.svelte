@@ -6,8 +6,6 @@
   import SendWave from './components/SendWave.svelte';
   import WaveList from './components/WaveList.svelte';
   import { onMount } from 'svelte';
-  // import { ethers } from 'ethers';
-  // import WavePortal from './artifacts/contracts/Wave-Portal.sol/WavePortal.json';
   
 	const CONTRACT_ADDRESS = 'YOUR_CONTACT_ADDRESS';
   

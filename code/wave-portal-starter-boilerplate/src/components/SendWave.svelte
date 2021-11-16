@@ -1,8 +1,6 @@
 <script>
   export let fetchWaves;
   export let CONTRACT_ADDRESS;
-  // import { ethers } from 'ethers';
-  // import WavePortal from '../artifacts/contracts/Wave-Portal.sol/WavePortal.json';
   let message = '';
   let loading = false;
   

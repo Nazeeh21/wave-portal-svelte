@@ -1,5 +1,4 @@
 <script>
-  // import { ethers } from 'ethers';
   let account;
   let connectWalletError;
   let walletConnected = false;
