@@ -247,6 +247,9 @@ For this tutorial, we are not going to focus on developing the frontend, instead
 2. Create functions to send messages along with the greeting.
 
 Let's start integration with our front end. To test our frontend, start the server using the following command.
+
+> Before starting the server, make sure that the current directory is `code/wave-portal-starter-boilerplate/`
+
 ```shell
 yarn dev
 ```
@@ -301,8 +304,6 @@ async function getAllWaves() {
   }
 ```
 Now, start the development server of svelte. You should see an error as shown below.
-
-> Before starting the server, make sure that the current directory is `code/wave-portal-starter-boilerplate/`
 
 <p align="center">
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634411696569/FNNU0XSkV.png" alt="image" />
