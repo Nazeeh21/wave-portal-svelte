@@ -262,7 +262,7 @@ You'll notice that, by clicking on any of the greetings, nothing is happening. A
 
 Navigate to the `App.svelte` file under the `code/wave-portal-starter-boilerplate/src` folder. `App.svelte` gets rendered on the home page on starting the frontend server and thus contains all the functionality to fetch the waves. 
 
-Update your contract address here, which logged into the CLI while deploying it. 
+Update your contract address on line 10, which logged into the CLI while deploying it. 
 ```javascript
 const CONTRACT_ADDRESS = 'YOUR_CONTACT_ADDRESS';
 ```
@@ -365,7 +365,7 @@ We also need to add the following import statements in `SendWave.svelte` file in
   import WavePortal from '../artifacts/contracts/WavePortal.sol/WavePortal.json';
 ```
 
-To interact with our Smart Contract from our front end, we need to connect our MetaMask wallet to our website. For that, in `code/wave-portal-starter-boilerplate/src/components/Wallet.svelte` file, complete the `connectWallet()` in line 6 function by pasting the below code. `Wallet.svelte` will contain all the logic required for connecting MetaMask wallet to our frontend.
+To interact with our Smart Contract from our front end, we need to connect our MetaMask wallet to our website. For that, in `code/wave-portal-starter-boilerplate/src/components/Wallet.svelte` file, complete the `connectWallet()` function in line 6 by pasting the below code. `Wallet.svelte` will contain all the logic required for connecting MetaMask wallet to our frontend.
 
 ```javascript
 async function connectWallet() {
