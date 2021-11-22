@@ -260,18 +260,14 @@ Now you should see our front end as below on the `localhost:5000`. If `localhost
 
 You'll notice that, by clicking on any of the greetings, nothing is happening. Also, we are not able to see any previous greetings. So, let's add logic to send greetings to our Smart Contract and fetch all the previous greetings.
 
-Navigate to the `App.svelte` file under the `code/wave-portal-starter-boilerplate/src` folder. `App.svelte` gets rendered on the home page on starting the frontend server.  Add the following `import` statements.
+Navigate to the `App.svelte` file under the `code/wave-portal-starter-boilerplate/src` folder. `App.svelte` gets rendered on the home page on starting the frontend server and thus contains all the functionality to fetch the waves. 
 
-```svelte
-import { ethers } from 'ethers';
-import WavePortal from './artifacts/contracts/WavePortal.sol/WavePortal.json'
-```
-We have imported the ABI of our **WavePortal** contract which enables us to interact with our Smart Contract. 
-
+Update your contract address here, which logged into the CLI while deploying it. 
 ```javascript
 const CONTRACT_ADDRESS = 'YOUR_CONTACT_ADDRESS';
 ```
-Update your contract address here, which logged into the CLI while deploying it. Now, paste the below code in the `getAllWaves()` function. This function fetches all the greetings from the blockchain network to our Client.
+
+Now, paste the below code in the `getAllWaves()` function on line 12 in `App.svelte`. This function fetches all the greetings from the blockchain network to our Client.
 
 ```javascript
 async function getAllWaves() {
@@ -302,6 +298,13 @@ async function getAllWaves() {
     return;
   }
 ```
+
+We have to import the ABI of our **WavePortal** contract which enables us to interact with our Smart Contract. Thus add the following `import` statements on line 3 in `App.svelte`.
+
+```svelte
+import { ethers } from 'ethers';
+import WavePortal from './artifacts/contracts/WavePortal.sol/WavePortal.json'
+```
 Now, start the development server of svelte. You should see an error as shown below.
 
 <p align="center">
@@ -313,11 +316,8 @@ This is because we are trying to import a `json` file in our `App.svelte` and to
 ```shell
 yarn add @rollup/plugin-json
 ```
-Navigate to the `rollup.config.js` file in `code/wave-portal-starter-boilerplate/` *directory*. This file contains all your configurations for the **rollup**. Now, in your `rollup.config.js` file, import this plugin by adding the following import statement.
-```javascript
-import json from "@rollup/plugin-json";
-```
-In your `rollup.config.js` file in `code/wave-portal-starter-boilerplate/` *directory* and navigate to the `plugins` array as below.
+Navigate to the `rollup.config.js` file in `code/wave-portal-starter-boilerplate/` *directory*. This file contains all your configurations for the **rollup**. Now, in your `rollup.config.js` file navigate to the `plugins` array as show below and add `json(),` on line 60.
+
 ```javascript
 plugins: [
      commonjs(),
@@ -325,13 +325,14 @@ plugins: [
      ...
 ]
 ```
-Now, restart the development server, you should see the frontend server started successfully. Currently, you won't see any greetings on our front end because we don't have one. So, let's add a function to send the greeting. For that, navigate to `code/wave-portal-starter-boilerplate/src/components/SendWave.svelte` file. This file will contain logic for sending the wave. Add the following imports in `SendWave.svelte` file.
-
+In `rollup.config.js` file, in `code/wave-portal-starter-boilerplate/` *directory* in order to use `json()`, we also need to import `json()` from our newly added plugin, thus add the following import statement in line 7 of `rollup.config.js` file.
 ```javascript
-  import { ethers } from 'ethers';
-  import WavePortal from '../artifacts/contracts/WavePortal.sol/WavePortal.json';
+import json from "@rollup/plugin-json";
 ```
-Complete the `sendWaveReaction()` function by pasting the code from below. This function will send *wave reaction*.
+Now, restart the development server, you should see the frontend server started successfully. Currently, you won't see any greetings on our front end because we don't have one. So, let's add a function to send the greeting. 
+
+For that, navigate to `code/wave-portal-starter-boilerplate/src/components/SendWave.svelte` file. This file will contain logic for sending the wave. Complete the `sendWaveReaction()` function in line 7 by pasting the code from below. This function will send *wave reaction*.
+
 ```javascript
 async function sendWaveReaction(reaction, message) {
     loading = true;
@@ -356,7 +357,15 @@ async function sendWaveReaction(reaction, message) {
     }
   }
 ```
-To interact with our Smart Contract from our front end, we need to connect our MetaMask wallet to our website. For that, in `code/wave-portal-starter-boilerplate/src/components/Wallet.svelte` file, complete the `connectWallet()` function by pasting the below code. `Wallet.svelte` will contain logic for connecting MetaMask wallet to our frontend.
+
+We also need to add the following import statements in `SendWave.svelte` file in line 2.
+
+```javascript
+  import { ethers } from 'ethers';
+  import WavePortal from '../artifacts/contracts/WavePortal.sol/WavePortal.json';
+```
+
+To interact with our Smart Contract from our front end, we need to connect our MetaMask wallet to our website. For that, in `code/wave-portal-starter-boilerplate/src/components/Wallet.svelte` file, complete the `connectWallet()` in line 6 function by pasting the below code. `Wallet.svelte` will contain all the logic required for connecting MetaMask wallet to our frontend.
 
 ```javascript
 async function connectWallet() {
@@ -400,7 +409,7 @@ To deploy to the test network we need to update our hardhat config with a piece 
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634414939857/znFCh5i1q.png" alt="image" />
 </p>
 
-Now add networks property in `hardhat.config.js` under `code/wave-portal-starter-boilerplate/` directory as shown below.
+Now add networks property in `hardhat.config.js` in line 24 under `code/wave-portal-starter-boilerplate/` directory as shown below.
 ```shell
 module.exports = {
   defaultNetwork: "hardhat",
