@@ -14,6 +14,8 @@ I was developing a dApp using Svelte. While developing, I encountered a lot of e
 - Display all the wave greetings on the front-end along with their address
 - A contract for storing user's greeting message and their wave
 
+> You can find the demo video [here](https://youtu.be/dFVnTgF1L0s).
+
 > You can refer to the code located [here](https://github.com/Nazeeh21/wave-portal-svelte/tree/main/code/wave-portal-complete) for your reference. 
 
 
