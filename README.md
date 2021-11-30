@@ -4,27 +4,25 @@
 	
 # Integrate your Svelte app with Smart Contract
 
-## Building
-Full-stack dApps using Svelte, Ethers.js, Solidity, and Hardhat
-
-I was developing a dApp using Svelte. While developing, I encountered a lot of errors and also didn't find enough resources for the same. So, I thought to write down a guide for the same so no one feels a lack of resources anymore.
+## Overview
+This article focuses on developing a Full-stack dApps using [Svelte](https://svelte.dev/), [Ethers.js](https://docs.ethers.io/v5/), [Solidity](https://docs.soliditylang.org/en/v0.8.10/), and [Hardhat](https://hardhat.org/).
 
 ### What we will be building?
 - A front end that allows the user to send a greeting message along with the wave to the contract owner ([demo](https://wave-portal-svelte.vercel.app/))
 - Display all the wave greetings on the front-end along with their address
 - A contract for storing user's greeting message and their wave
 
-> You can find the demo video [here](https://youtu.be/d2BlC9AGOXc).
+> Have a look at the [demo video](https://youtu.be/d2BlC9AGOXc) to get the better understanding of what we'll be building.
+> 
+> Refer to the code located [here](https://github.com/Nazeeh21/wave-portal-svelte/tree/main/code/wave-portal-complete) to follow along.
 
-> You can refer to the code located [here](https://github.com/Nazeeh21/wave-portal-svelte/tree/main/code/wave-portal-complete) for your reference. 
 
-
-### Tech Stacks we'll be using:
+### Which Tech Stacks we'll be using?
 - Client-side framework: [Svelte](https://svelte.dev/)
 - Ethereum development environment: [Hardhat](https://hardhat.org/)
 - Ethereum Web Client library: [Ethers.js](https://docs.ethers.io/v5/)
 
-### Prerequisites
+### What are Prerequisites?
 1. Node.js environment on your local machine
 2. [Metamask](https://metamask.io/) extension in your browser
 
