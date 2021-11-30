@@ -52,7 +52,7 @@ npx hardhat
 ```
 Select the default settings when prompted as shown
 <p align="center">
-![image](https://user-images.githubusercontent.com/56908732/144033420-c6bae23d-bb2c-4036-bec5-561a61017850.png)
+<img src="https://user-images.githubusercontent.com/56908732/144033420-c6bae23d-bb2c-4036-bec5-561a61017850.png" alt="image" margin="auto" />
 </p>
 
 Following that, run the following command
