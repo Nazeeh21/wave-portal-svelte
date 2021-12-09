@@ -203,7 +203,7 @@ npx hardhat node
 Running this command will list all the accounts and their private keys in your terminal.
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634374126123/MLK6SlBIU.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634374126123/MLK6SlBIU.png" alt="test-accounts.png" />
 </p>
 
 These are the 20 test accounts created for us by Hardhat that we can use to deploy and test our smart contract locally. Each account has a sufficient amount of test Ether.
@@ -216,9 +216,7 @@ Let us deploy our smart contract to localhost using one of these accounts. But b
 async function main() {
   const WavePortal = await hre.ethers.getContractFactory("WavePortal");
   const wavePortal = await WavePortal.deploy();
-
   await wavePortal.deployed();
-
   console.log("WavePortal deployed to:", wavePortal.address);
 }
 
@@ -229,6 +227,20 @@ main()
     process.exit(1);
   });
 ```
+
+### Explanation of the code above
+
+Line 1: Declaring an asynchronous function `main`, that executes when we will deploy our smart contract.
+
+Line 2: Calling `hre.ethers.getContactFactory` that returns an instance of the contract.
+
+Line 3: Calling `.deploy()`, that deploys an instance of the contract
+
+Line 4: Calling `.deployed()`, that awaits for the contract to get deployed.
+
+Line 5: Logging the address of the deployed contract in the console.
+
+Line 7: Calling the `main()` function and add error handling.
 
 Now, let us run the deploy script and provide the flag ` --network localhost` to the CLI which indicates that we want to deploy to our local network.
 
@@ -241,7 +253,7 @@ This script will deploy our smart contract to our local network and now we shoul
 On successful deployment, you should see the following output in your terminal
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634375594970/oay6gqtD6.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634375594970/oay6gqtD6.png" alt="console-image.png" />
 </p>
 
 > This contract is deployed on the local node, using the first account that was created when we started the local network.
@@ -308,6 +320,7 @@ async function getAllWaves() {
     if (!window.ethereum) {
       return;
     }
+    
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const wavePortalContract = new ethers.Contract(
       CONTRACT_ADDRESS,
@@ -315,16 +328,19 @@ async function getAllWaves() {
       provider
     );
     const recievedWaves = await wavePortalContract.getAllWaves();
+    
     if (!recievedWaves) {
       waveList = [];
       return;
     }
+    
     const normalizeWave = (wave) => ({
       reaction: wave.reaction,
       message: wave.message,
       waver: wave.waver,
       timestamp: new Date(wave.timestamp * 1000),
     });
+    
     waveList = recievedWaves
       .map(normalizeWave)
       .sort((a, b) => b.timestamp - a.timestamp);
@@ -332,6 +348,24 @@ async function getAllWaves() {
     return;
   }
 ```
+
+### Explanation of the code above
+
+Line 1: Declaring an asynchronous function `getAllWaves()` that will fetch all the waves from our smart contract.
+
+Line 2: Checking if we are getting an **ethereum** object in our window, if not we will return null.
+
+Line 6: Getting the provider to access the blockchain data.
+
+Line 7: Creating a local instance of our contract by passing _Contract address_, _Contract abi_ and _provider_ as an argument. 
+
+Line 12: Fetching all the waves from our smart contract by calling `getAllWaves()` method.
+
+Line 13: If we do not get any waves, then we will return an empty array. 
+
+Line 18: Declaring function `normalizeWave()`, that will destruct the wave.
+
+Line 25: Destructing the _recievedWaves()_, sorting on the basis of _timestamp_ and assigning these sorted waves to the `waveList` variable.
 
 We have to import the ABI of our **WavePortal** contract which enables us to interact with our smart contract. Thus add the following `import` statements on line 3 in `App.svelte`.
 
@@ -397,6 +431,30 @@ async function sendWaveReaction(reaction, message) {
   }
 ```
 
+### Explanation of the code above
+
+Line 1: Declaring an asynchronous function `sendWaveReaction()`, that will send our reaction to our smart contract on the blockchain network.
+
+Line 2: Setting `loading` variable to _true_.
+
+Line 4: Declaring a `provider` variable that contains the read-only abstraction to access the blockchain data.
+
+Line 5: Storing the _signer_ object from our _provider_ in `singer` variable, that will allow us to sign the transaction.
+
+Line 6: Creating the local instance of our smart contract.
+
+Line 11: Calling the `wave()` function from our smart contract, with _reaction_ and _message_ as an arguments.
+
+Line 14: Waiting for the transaction to get completed.
+
+Line 15: Resetting the value of `message` variable after sending the wave.
+
+Line 16: Fetching all the waves again. 
+
+Line 17: Setting the `loading` indicator to _false_.
+
+Line 19: Showing an _alert_ if something goes wrong.
+
 We also need to add the following import statements in `SendWave.svelte` file in line 2.
 
 ```javascript
@@ -410,16 +468,12 @@ To interact with our smart contract from our front end, we need to connect our M
 async function connectWallet() {
     walletConnected = false;
     const { ethereum } = window;
-    console.log('ethereum: ', ethereum);
-    console.log('Connecting wallet');
     await ethereum
       .request({ method: 'eth_requestAccounts' })
       .then((accountList) => {
         const [firstAccount] = accountList;
         account = firstAccount;
         walletConnected = true;
-        console.log('wallet connected');
-        console.log(account);
       })
       .catch((error) => {
         walletConnected = false;
@@ -428,6 +482,24 @@ async function connectWallet() {
       });
   }
 ```
+
+### Explanation of the above code
+
+Line 1: Declaring an asynchronous function `connectWallet()`.
+
+Line 2: Setting `walletConnected` variable to _false_.
+
+Line 3: Getthing an **ethereum** object from our window.
+
+Line 4: Calling `ethereum.request({ method: 'eth_requestAccounts' })` that will give us the accounts of the connected wallet.
+
+Line 7: Getting **first account** from an array of all the accounts
+
+Line 8: Assining `account` variable the value of _first account_.
+
+Line 9: Setting `walletConnected` variable to _true_.
+
+Line 12: Setting `walletConnected` variable to _false_, if encountered an error while connecting wallet.
 
 Now, restart the server if needed and you should see a MetaMask popup on clicking the **Connect MetaMask** button. After connecting we'll be able to successfully send greetings, waves as well as fetch all the greetings. 
 
