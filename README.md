@@ -28,7 +28,7 @@ This article focuses on developing a Full-stack dApp using [Svelte](https://svel
 ### Prerequisites
 
 1. Node.js environment on your local machine
-2. [Metamask](https://metamask.io/) extension in your browser
+2. [MetaMask](https://metamask.io/) extension in your browser
 
 You do not need real Ether as we will be using a test network for this tutorial.
 
@@ -61,7 +61,12 @@ To compile and deploy our smart contract, let's initialize a new Ethereum develo
 npx hardhat
 ```
 
-Select the default settings when prompted as shown
+Select the following settings when prompted 
+
+- **What do you want to do?** .Select _Create a basic sample project_
+- **Hardhat Project Root** . _Press Enter to set current directory as root_
+- **Do you want to add a .gitignore? (Y/n)** . n
+
 
 <p align="center">
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634292845974/at3uW4CHR.png" alt="image.png" />
@@ -75,7 +80,7 @@ yarn add --dev "hardhat@^2.6.6" "@nomiclabs/hardhat-waffle@^2.0.0" "ethereum-waf
 
 Now you should see a `hardhat.config.js` file. You should also have the `contracts` and `scripts` folders in your `code/wave-portal-starter-boilerplate/` directory.
 
-Due to a [Metamask configuration issue](https://hardhat.org/metamask-issue.html), we need to update the chain Id of our Hardhat Configuration to **1337**. Also, we need to update the location for the [artifacts](https://hardhat.org/guides/compile-contracts.html#artifacts) to be in the `code/wave-portal-starter-boilerplate/src` directory of our app.
+Due to a [MetaMask configuration issue](https://hardhat.org/metamask-issue.html), we need to update the chain Id of our Hardhat Configuration to **1337**. Also, we need to update the location for the [artifacts](https://hardhat.org/guides/compile-contracts.html#artifacts) to be in the `code/wave-portal-starter-boilerplate/src` directory of our app.
 
 Navigate to `code/wave-portal-starter-boilerplate/hardhat.config.js` file. This file consists of all the configurations regarding the hardhat ethereum environment. Make sure your `hardhat.config.js` looks like this.
 
@@ -242,9 +247,9 @@ On successful deployment, you should see the following output in your terminal
 
 Store this address for your reference, as we will need it while interacting with our smart contract from our Svelte Client.
 
-Now, to send a transaction to our Smart Contract deployed on the test node, we need to configure Metamask wallet to use one of the accounts created by hardhat while running the command `npx hardhat node`
+Now, to send a transaction to our smart contract deployed on the test node, we need to configure MetaMask wallet to use one of the accounts created by hardhat while running the command `npx hardhat node`
 
-Let's import one of these accounts into our Metamask wallet and use its test ethers. To do so, open MetaMask and update the network to be **Localhost 8545**
+Let's import one of these accounts into our MetaMask wallet and use its test ethers. To do so, open MetaMask and update the network to be **Localhost 8545**
 
 <p align="center">
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376286673/KoVETGaBw.png" alt="image.png" />
@@ -256,7 +261,7 @@ On **Localhost 8545**, click on **Import Account** from the **accounts** menu on
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376404075/IEDb1ytMG.png" alt="image.png" />
 </p>
 
-Copy and paste any one of the **private keys** from the CLI and click on **Import**. Once the account is imported, you should see the Metamask interface like this.
+Copy and paste any one of the **private keys** from the CLI and click on **Import**. Once the account is imported, you should see the MetaMask interface like this.
 
 <p align="center">
 <img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376684523/ZmN9K5RmW.png" alt="image.png" />
@@ -327,7 +332,7 @@ async function getAllWaves() {
   }
 ```
 
-We have to import the ABI of our **WavePortal** contract which enables us to interact with our Smart Contract. Thus add the following `import` statements on line 3 in `App.svelte`.
+We have to import the ABI of our **WavePortal** contract which enables us to interact with our smart contract. Thus add the following `import` statements on line 3 in `App.svelte`.
 
 ```svelte
 import { ethers } from 'ethers';
@@ -423,7 +428,7 @@ async function connectWallet() {
   }
 ```
 
-Now, restart the server if needed and you should see a MetaMask popup on clicking the **Connect Metamask** button. After connecting we'll be able to successfully send greetings, waves as well as fetch all the greetings. 
+Now, restart the server if needed and you should see a MetaMask popup on clicking the **Connect MetaMask** button. After connecting we'll be able to successfully send greetings, waves as well as fetch all the greetings. 
 
 Now, we have our smart contract running successfully on a local node, so let's deploy it on live TestNet.
 
