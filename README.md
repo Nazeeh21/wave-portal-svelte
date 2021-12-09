@@ -106,7 +106,6 @@ Your `WavePortal.sol` file should look like this.
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSE
-
 pragma solidity ^0.8.0;
 
 contract WavePortal {
@@ -124,8 +123,6 @@ contract WavePortal {
 	}
 
 	uint256 totalWaves;
-	uint256 private seed;
-
 	Wave[] public waveList;
 
 	event NewWave(
@@ -135,34 +132,12 @@ contract WavePortal {
 		uint256 timestamp
 	);
 
-	constructor() payable {}
+	constructor() {}
 
 	function wave(Reaction _reaction, string memory _message) public {
-	
-		// prize randomness
 		totalWaves += 1;
 		waveList.push(Wave(_reaction, _message, msg.sender, block.timestamp));
 		emit NewWave(_reaction, _message, msg.sender, block.timestamp);
-
-		// store private seed to make gaming it more difficult
-		uint256 randomNumber = (block.difficulty + block.timestamp + seed) %
-			100;
-		seed = randomNumber;
-
-		// check preconditions to enter the draw
-		bool entersDraw = _reaction != Reaction.Wave ||
-			bytes(_message).length > 20;
-
-		// grants prize
-		if (entersDraw && randomNumber < 40) {
-			uint256 prizeAmount = 0.0001 ether;
-			require(
-				prizeAmount <= address(this).balance,
-				"Contract funds are insufficient to grant prize."
-			);
-			(bool success, ) = (msg.sender).call{value: prizeAmount}("");
-			require(success, "Failed to withdraw money from contract.");
-		}
 	}
 
 	function getAllWaves() public view returns (Wave[] memory) {
@@ -174,6 +149,32 @@ contract WavePortal {
 	}
 }
 ```
+
+#### Explanation of the code above:
+
+Line 1: Specifying [SPDX license](https://spdx.org/licenses/) type, which is an addition after Solidity ^0.6.8. Whenever the source code of a smart contract is made available to the public, these licenses can help resolve/avoid copyright issues. If you do not wish to specify any license type, you can use a special value UNLICENSED or simply skip the whole comment (it won't result in an error, just a warning).
+
+Line 2: Declaring the solidity version.
+
+Line 4: Starting our Contract named WavePortal.
+
+Line 5: Declaring `Reaction` as *enum* with Wave, Cake and Hype as predefined values.
+
+Line 11: Declaring `Wave` as struct containing variables `reaction` of type *Reaction*, `message` of type *string*, `waver` of type *address* and `timestamp` of type *uint*.
+
+Line 18: Declaring variable `totalWaves` of type *uint* to store the total number of waves.
+
+Line 19: Declaring an array `wavelist` of type of *Wave* to store all the waves.
+
+Line 21: Declaring an event `NewWave`, containing information about the reaction, message, sender address and timestamp of the wave. This event gets emitted once our wave gets store in the contract successfully.
+
+Line 28: Initializing this constructor, but do not need to set anything so leaving that empty.
+
+Line 30: Declaring function **wave** with two arguments, `_reaction` of type Reaction which will store our reaction information and `_message` of type string which will store the message of the user. Declaring `_message` as **memory** means, it will get destroyed from the memory once the function gets executed.
+
+Line 36: Declaring function **getAllWaves**, that returns all the an array containing all the waves.
+
+Line 40: Declaring function **getTotalWaves**, that returns the number of waves.
 
 ### Interacting with the Ethereum blockchain
 
