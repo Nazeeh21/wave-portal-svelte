@@ -69,7 +69,7 @@ Select the following settings when prompted
 
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634292845974/at3uW4CHR.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634292845974/at3uW4CHR.png" alt="hardhat-settings.png" />
 </p>
 
 Following that, run the following command
@@ -262,22 +262,22 @@ Store this address for your reference, as we will need it while interacting with
 
 Now, to send a transaction to our smart contract deployed on the test node, we need to configure MetaMask wallet to use one of the accounts created by hardhat while running the command `npx hardhat node`
 
-Let's import one of these accounts into our MetaMask wallet and use its test ethers. To do so, open MetaMask and update the network to be **Localhost 8545**
+Let us import one of these accounts into our MetaMask wallet and use its test ethers. To do so, open MetaMask and update the network to be **Localhost 8545**
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376286673/KoVETGaBw.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376286673/KoVETGaBw.png" alt="metamask-networks.png" />
 </p>
 	
 On **Localhost 8545**, click on **Import Account** from the **accounts** menu on the top-right.
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376404075/IEDb1ytMG.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376404075/IEDb1ytMG.png" alt="import-account.png" />
 </p>
 
 Copy and paste any one of the **private keys** from the CLI and click on **Import**. Once the account is imported, you should see the MetaMask interface like this.
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376684523/ZmN9K5RmW.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634376684523/ZmN9K5RmW.png" alt="imported-network.png" />
 </p>
 
 As we have our contract deployed and our MetaMask wallet configured, let us start interacting from our Svelte frontend.
@@ -300,7 +300,7 @@ yarn dev
 Now you should see our front end as below on the `localhost:5000`. If `localhost:5000` doesn't work then try `http://127.0.0.1:5000/`.
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634395206936/aMtLiVCU7.png" alt="image.png" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634395206936/aMtLiVCU7.png" alt="wave-portal.png" />
 </p>
 
 You will notice that, by clicking on any of the greetings, nothing is happening. Also, we are not able to see any previous greetings. So, let us add logic to send greetings to our smart contract and fetch all the previous greetings.
@@ -520,7 +520,7 @@ https://ropsten.infura.io/v3/your_project_id
 To deploy to the test network we need to update our hardhat config with a piece of additional network information. One thing is to set the private key of the wallet we'll be deploying from. You can export your private key from MetaMask by clicking menu > Account details > Export private key.
 
 <p align="center">
-<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634414939857/znFCh5i1q.png" alt="image" />
+<img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1634414939857/znFCh5i1q.png" alt="hardhat-config" />
 </p>
 
 Now add networks property in `hardhat.config.js` in line 24 under `code/wave-portal-starter-boilerplate/` directory as shown below.
